@@ -1,0 +1,35 @@
+<!-- 제이쿼리 -->
+<!-- $('#id').css -->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 속성 변경</title>
+  </head>
+  <body>
+    <img
+      id="myImage"
+      src="https://www.eventim.de/magazin/fileadmin/_processed_/5/6/csm_coldplay-higher-power-1_8b7274175e.jpg"
+      alt=""
+    />
+    <!-- <p id="para">이 문장의 색상 변경</p> -->
+    <button id="btn">이미지 변경</button>
+    <script>
+      //   const p = document.getElementById("para");
+      const button = document.getElementById("btn");
+      button.addEventListener("click", function () {
+        // document.getElementById("para").style.color = "red";
+        document.getElementById("myImage").src =
+          "https://i.namu.wiki/i/7WE5usCgnGGEHsStJtephd1-P_pMwaucaS70eZHiBjNdsD0kUKC0dFf2B73XcnrXpUOfN2YdgXDdwN-0GTqkooTbt2ReSO8qrf3UfFK8zYBKlowOdbirtpUVxSdCfIhVNojBLTXFN3aDJ_SEasCleQ.webp";
+      });
+
+      //   제이쿼리
+      //   $("#para").css("color", "red");
+      //   $("myImage").attr(
+      //     "src",
+      //     "https://i.namu.wiki/i/7WE5usCgnGGEHsStJtephd1-P_pMwaucaS70eZHiBjNdsD0kUKC0dFf2B73XcnrXpUOfN2YdgXDdwN-0GTqkooTbt2ReSO8qrf3UfFK8zYBKlowOdbirtpUVxSdCfIhVNojBLTXFN3aDJ_SEasCleQ.webp"
+      //   );
+    </script>
+  </body>
+</html>

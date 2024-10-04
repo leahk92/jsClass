@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>버튼 클릭 그림 나타나기/숨기기</title>
+    <style>
+      #toggleBUTTON {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Toggle Image</h1>
+    <img src="./greenArrow.jpg" alt="그린 애로우" />
+    <br />
+    <button id="toggleBUTTON">Hide Image</button>
+
+    <script>
+      const image = document.querySelector("img");
+      const button = document.querySelector("#toggleBUTTON");
+
+      button.addEventListener("click", () => {
+        if (image.style.display === "none") {
+          image.style.display = "block";
+          button.textContent = "Hide Image";
+        } else {
+          image.style.display = "none";
+          button.textContent = "Show Image";
+        }
+      });
+      //element.style.display = 'none'
+      //element.style.display = 'block'
+      //element.style.visible = 'hidden'
+      //element.style.visible = 'visible'
+      //element.style.opacity = '0'
+      //element.style.opacity = '1'
+
+      //   jQuery
+      // head에 CDN 추가
+      //   $("#toggleButton").click(function () {
+      //     $("image").toggle();
+      //     $(this).text(function () {
+      //       return $("image").is(":visible") ? "Hide Image" : "Show Image";
+      //     });
+      //   });
+
+      //   toggle(), slideToggle(), fadeToggle()
+    </script>
+  </body>
+</html>

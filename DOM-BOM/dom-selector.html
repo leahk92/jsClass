@@ -1,0 +1,53 @@
+<!-- 요소 선택 -->
+<!-- getElementID() -->
+<!-- getElemensByClassName() -->
+<!-- getElemensByTagName() -->
+<!-- querySelector() -->
+<!-- querySelectorAll() -->
+
+<!-- 제이쿼리 -->
+<!-- $('') -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Element Select</title>
+  </head>
+  <body>
+    <h1 id="title">안녕하세요</h1>
+    <h2 id="myClass" class="text">첫번째 안녕하세요</h2>
+    <h2 class="text">두번째 안녕하세요</h2>
+  </body>
+
+  <script>
+    const h1 = document.getElementById("title");
+    console.log(h1);
+    console.log(h1.textContent);
+
+    const h2 = document.getElementsByClassName("text");
+    console.log(h2);
+    console.log(h2[0]);
+    console.log(h2[0].textContent);
+    console.log(h2[1]);
+    console.log(h2[1].textContent);
+    console.log(h2[3]); //undefined
+
+    const h2Query = document.querySelector("#myClass, .text");
+    console.log(h2Query);
+    console.log(h2Query.textContent); //첫번째 안녕하세요
+
+    const h2QueryAll = document.querySelectorAll(".text");
+    console.log(h2QueryAll);
+    console.log(h2QueryAll[0].textContent);
+    console.log(h2QueryAll[1].textContent);
+
+    const element = document.querySelector("#yourClass");
+    if (element !== null) {
+      console.log("요소가 존재");
+    } else {
+      console.log("요소가 존재하지 않음");
+    }
+  </script>
+</html>

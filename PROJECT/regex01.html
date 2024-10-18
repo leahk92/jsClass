@@ -1,0 +1,24 @@
+<!-- 정규표현식 (Regular Expression) -->
+<!-- 1. input태그의 pattern 속성
+2. 자바스크립트 변수에 정규표현식을 할당 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식</title>
+  </head>
+  <body>
+    <form>
+      <input
+        type="text"
+        pattern="[a-zA-Z]{3,}"
+        title="세 글자 이상의 영문자를 입력하세요"
+      />
+      <!-- 숫자만 허용 -->
+      <input type="text" pattern="\d+" title="숫자만 입력하세요" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!-- 정규표현식 (Regular Expression) -->
+<!-- 1. input태그의 pattern 속성
+2. 자바스크립트 변수에 정규표현식을 할당 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정규표현식</title>
+  </head>
+  <body>
+    <form>
+      <!-- 전화번호 형식 -->
+      <input
+        type="text"
+        pattern="\d{2,3}-\d{3,4}-\d{4}"
+        title="전화번호 형식에 맞춰주세요 010-1234-5678"
+      />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

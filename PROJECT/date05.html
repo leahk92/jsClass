@@ -1,0 +1,82 @@
+<!-- flatpicker 적용 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오늘이 며칠째?</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <h2>만난 날짜를 입력하세요</h2>
+      <input type="date" id="startDate" />
+      <button>오늘은 몇일?</button>
+      <div id="result"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+    <script>
+      // 윤년 (2월 28일 => 2월 29일) : leap year
+      // 4로 나누어지는 해
+      // 100으로 나누어지는 해는 제외
+      // 400으로 나누어지면 윤년
+
+      flatpicker("#startDate", {
+        dateFormat: "y-m-d",
+        defaultDate: "today",
+        allowInput: false, //날짜 선택만 가능
+        inline: true, //달력을 항상 화면에 보이게 함
+        loclae: "ko", //locale for this instance only
+      });
+
+      function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+      }
+
+      function calculateDays() {
+        const startDateInput = document.querySelector("#startDate").value;
+        if (!startDateInput) {
+          alert("날짜를 선택해주세요");
+          return;
+        }
+        const startDate = new Date(startDateInput); //1970.1.1부터 밀리미터초
+        const currentDate = new Date();
+
+        // 두 날짜 사이의 밀리초 계산
+        const timeDiff = currentDate - startDate;
+        // 밀리초를 일 단위로 변환
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        let years = 0;
+        let remainingDays = daysDiff;
+
+        // 윤년을 고려하여 1년 단위 계산
+        let year = startDate.getFullYear();
+        while (remainingDays >= isLeapYear(year) ? 366 : 365) {
+          remainingDays = remainingDays - isLeapYear(year) ? 366 : 365;
+          years++;
+          year++;
+        }
+
+        // 365일 기준으로 년과 일을 분리
+        // const years = Math.floor(daysDiff / 365);
+        // const remainingDays = daysDiff % 365;
+
+        // 결과 메세지 작성
+        let = message;
+        if (years > 0) {
+          message = `오늘은 만난지 ${years}년 ${remainingDays}일째 입니다.`;
+        } else {
+          message = `오늘은 만난지 ${remainingDays}일째 입니다.`;
+        }
+        document.querySelector("#result").textContent = message;
+      }
+      document.querySelector("button").addEventListener("click", calculateDays);
+    </script>
+  </body>
+</html>

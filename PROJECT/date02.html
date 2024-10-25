@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>디지털 시계</title>
+    <style>
+      body {
+        background: linear-gradient(to right, #003973, #e5e5be);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+      }
+      #clock-container {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+      #date {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      #clock {
+        font-size: 30px;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="clock-container">
+      <div id="date"></div>
+      <div id="clock"></div>
+    </div>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+        
+        const year = now.getFullYear();
+        //월 표시 조심!!! 0~11표시 => +1을 해야함
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const date = String(now.getDate()).padStart(2, "0");
+        // getDay() : 요일
+
+        const hour = String(now.getHours()).padStart(2, "0");
+        const min = String(now.getMinutes()).padStart(2, "0");
+        const sec = String(now.getSeconds()).padStart(2, "0");
+
+        const dateString = `오늘은 ${year}-${month}-${date} 입니다.`;
+        const timeString = `시간은 ${hour}:${min}:${sec} 입니다.`;
+        document.querySelector("#date").textContent = dateString;
+        document.querySelector("#clock").textContent = timeString;
+      }
+      setInterval(updateClock, 1000); // 1초마다 updateClock() 함수 호출
+      updateClock(); // 페이지 로드시 바로 시간 표시
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>디지털 시계</title>
+  </head>
+  <body>
+    <h1></h1>
+
+    <script>
+      function updateClock() {
+        const h1 = document.querySelector("h1");
+        const now = new Date();
+        const hour = String(now.getHours()).padStart(2, "0");
+        const min = String(now.getMinutes()).padStart(2, "0");
+        const sec = String(now.getSeconds()).padStart(2, "0");
+
+        const nowTime = `지금 시간은 ${hour}:${min}:${sec}입니다.`;
+        h1.textContent = nowTime;
+      }
+      setInterval(updateClock, 1000); // 1초마다 updateClock() 함수 호출
+      updateClock(); // 페이지 로드시 바로 시간 표시
+    </script>
+  </body>
+</html>

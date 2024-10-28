@@ -9,29 +9,31 @@
   </head>
   <body>
     <h1>현재 날씨</h1>
+    <input type="text" id="cityInput" placeholder="도시명을 입력하세요..." />
+    <button onclick="updateWeather()">날씨 조회</button>
     <div id="weather">날씨 정보를 불러오는 중...</div>
 
     <script>
       // fetch는 내부적으로 비동기적으로 실행됨
 
       // 외부 서버에서 날씨 데이터를 받아오는 함수
-      function getWeather() {
-        const url =
-          "https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&units=metric&appid=a546e42e9c1e18a07c48cd26d92f67ef";
+      function getWeather(cityName) {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=kr&units=metric&appid=a546e42e9c1e18a07c48cd26d92f67ef`;
+
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
             // 필요한 정보 추출
             const temperature = data.current.temp; //온도
             const description = data.current.weather[0].description; //날씨 설명
-            const city = data.name;
+            const city = data.name; //도시 이름
 
             // HTML 요소에 데이터를 표시
             const divElement = document.querySelector("#weather");
             divElement.innerHTML = `
             <p>도시 : ${city}</p>
             <p>온도 : ${temperature}</p>
-            <p>도시 : ${description}</p>
+            <p>날씨 설명 : ${translationDescription}</p>
             `;
           })
           .catch((error) => {
@@ -40,12 +42,29 @@
             const divElement = document.querySelector("#weather");
             divElement.innerHTML =
               "날씨 정보를 가져오는 중에 오류가 발생했습니다";
-            console.error("데이터를 가져오지 못했습니다", error);
+            console.error("오류", error);
           });
       }
 
+      function updateWeather() {
+        const cityInput = document.querySelector("#cityInput").value.trim();
+        const cityName = cityInput || "Busan";
+        getWeather(cityName);
+      }
+
+      // 엔터키를 입력했을 때 updateWeather() 함수 호출
+      // e 또는 event는 이벤트 객체
+      document
+        .querySelector("#cityInput")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            updateWeather();
+          }
+        });
+
       //   페이지가 로드될 때 실행(날씨 데이터를 받아옴)
-      window.onload = getWeather; // 조심 : getWeather() 안 됨
+      // window.onload = getWeather; // 조심 : getWeather() 안 됨
+      getWeather("Busan"); //가능
     </script>
   </body>
 </html>
